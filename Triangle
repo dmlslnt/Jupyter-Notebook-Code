@@ -1,0 +1,68 @@
+# ============================================================
+# Triangle (Apply Exception Handling)
+
+# Function: compute_triangle()
+# Purpose:  Accepts 3 sides of a triangle, validates input,
+#           computes area and perimeter, and handles errors.
+# ============================================================
+
+def compute_triangle():
+    # Main input loop – runs until the user chooses to stop
+    while True:
+        try:
+            # --------------------------------------------
+            # Step 1: Input the triangle sides
+            # --------------------------------------------
+            side1 = float(input("Enter side 1 (Base): "))
+            side2 = float(input("Enter side 2 (Height): "))
+            side3 = float(input("Enter side 3: "))
+
+            # Validate that all sides are positive
+            if side1 <= 0 or side2 <= 0 or side3 <= 0:
+                raise ValueError("All sides must be positive numbers.")
+
+            # --------------------------------------------
+            # Step 2: Compute area and perimeter
+            # --------------------------------------------
+            area = 0.5 * side1 * side2        # Using Base × Height / 2
+            perimeter = side1 + side2 + side3  # Sum of all sides
+
+        except ValueError as e:
+            # --------------------------------------------
+            # Step 3: Handle invalid inputs
+            # --------------------------------------------
+            print(f"\nError: {e}\nPlease enter valid positive numeric values.\n")
+            continue  # Retry input if an error occurs
+
+        # --------------------------------------------
+        # Step 4: Ask what to display (Area or Perimeter)
+        # --------------------------------------------
+        while True:
+            choice = input("Display result (A for Area, B for Perimeter): ").strip().upper()
+            if choice == "A":
+                print(f"\n(A) Area = 1/2 × Base × Height = {area:.2f}\n")
+                break
+            elif choice == "B":
+                print(f"\n(B) Perimeter = S1 + S2 + S3 = {perimeter:.2f}\n")
+                break
+            else:
+                print("Invalid choice. Please enter 'A' or 'B'.\n")
+
+        # --------------------------------------------
+        # Step 5: Ask if user wants to continue
+        # --------------------------------------------
+        while True:
+            cont = input("Continue? (Y/N): ").strip().upper()
+            if cont == "Y":
+                print()  # Add a line break for readability
+                break
+            elif cont == "N":
+                print("Program terminated.")
+                return  # Exit function cleanly
+            else:
+                print("Invalid choice. Please enter 'Y' or 'N'.\n")
+
+# ============================================================
+# Run the function
+# ============================================================
+compute_triangle()
